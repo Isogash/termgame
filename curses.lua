@@ -14,6 +14,7 @@ local function main ()
   curses.nl (false)	-- not nonl !
 
   stdscr:clear ()
+  curses.curs_set(2)
 
   local a = {}
   for k, v in pairs (curses) do
@@ -35,7 +36,7 @@ local function main ()
   local x = 0
   repeat
     local c = stdscr:getch ()
-    stdscr:mvaddstr (17, 20, string.format("Hi: %d", x))
+    stdscr:mvaddstr (17, 20, string.format("Hi: %d %d", curses.baudrate(), x))
     x = x + 1
   until c
   if c < 256 then c = string.char (c) end
