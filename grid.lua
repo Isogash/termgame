@@ -2,10 +2,9 @@ local grid = {}
 
 local grid_index = {}
 
-function grid.new(width, height)
+function grid.new(width)
   self = {
     width = width,
-    height = height,
   }
   return setmetatable(self, {
     __index = grid_index,
@@ -13,11 +12,11 @@ function grid.new(width, height)
 end
 
 function grid_index:get(x, y)
-  return self[x + (y*height)]
+  return self[x + (y*self.width)]
 end
 
 function grid_index:set(x, y, value)
-  self[x + (y*height)] = value
+  self[x + (y*self.width)] = value
 end
 
 return grid
